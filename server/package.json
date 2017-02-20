@@ -2,5 +2,10 @@
   "name": "realtime-server",
   "version": "0.0.1",
   "description": "my first realtime server",
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.14.1",
+    "fs": "0.0.1-security",
+    "protobufjs": "^6.6.3",
+    "socketio": "^1.0.0"
+  }
 }

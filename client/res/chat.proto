@@ -1,0 +1,67 @@
+package chat;
+syntax = "proto3";
+
+// -------------------------------------------------------
+// 1. 基础结构体定义
+// -------------------------------------------------------
+
+//玩家信息
+message User {
+    optional string userid = 1;   //玩家id
+    optional string username = 2; //玩家名称
+}
+
+// -------------------------------------------------------
+// 2. 所有协议的编号
+// -------------------------------------------------------
+enum MsgType {
+    // client->server
+    Login_CS = 1;
+    Logout_CS = 2;
+    Message_CS = 3;
+
+    // server->client
+    Login_SC = 101;
+    Logout_SC = 102;
+    Message_SC = 103;
+}
+
+// -------------------------------------------------------
+// 请求/回应/push消息
+// -------------------------------------------------------
+
+//登陆请求
+message Login_CS {
+    optional User user = 1;   //玩家信息
+}
+
+//告诉服务器下线
+message Logout_CS {
+    optional User user = 1;   //下线玩家信息
+}
+
+//发送给服务器的消息结构
+message Message_CS{
+    optional User user = 1;      //玩家信息
+    optional string content = 2; //聊天内容
+    optional int32 channel_id = 3;//聊天频道
+}
+
+//登陆应答
+message Login_SC {
+    repeated User onlineUsers = 1;      //玩家在线列表
+    optional User loginuser = 2;       //新上线的玩家信息
+}
+
+//玩家下线通知其他客户端
+message Logout_SC{
+    repeated User onlineUsers = 1;      //玩家在线列表
+    optional User logoutuser = 2;      //下线的玩家信息
+}
+
+//推送给客户端的消息结构
+message Message_SC{
+    optional User user = 1;      //玩家信息
+    optional string content = 2; //聊天内容
+    optional int32 channel_id = 3;//聊天频道
+}
