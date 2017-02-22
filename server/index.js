@@ -111,6 +111,7 @@ io.on('connection', function(socket){
 		//向所有客户端广播发布的消息
 		// io.emit('message', obj);
 		// var buffer = ProtoDef.pack(ProtoDef.MsgType.Message_SC, obj);
+		console.log(data);
 		io.emit('message', data);
 		console.log(data.length);
 		console.log(obj.user.username+'说：'+obj.content);

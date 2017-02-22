@@ -10,7 +10,6 @@ var exports = module.exports;
 var fs = require("fs");
 var protobuf = require("protobufjs");
 
-
 /**
  * 消息类型定义
  * @type {{}}
